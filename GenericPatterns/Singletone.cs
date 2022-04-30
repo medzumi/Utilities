@@ -23,7 +23,7 @@ namespace Utilities.GenericPatterns
                 }
                 
             }
-            protected set
+            set
             {
                 if (_instance is IDisposable disposable)
                 {
