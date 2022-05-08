@@ -1,6 +1,6 @@
 ﻿namespace ApplicationScripts.Ecs.Utility
 {
-    public interface IClonable<T> where T : IClonable<T>
+    public interface IClonable<out T> where T : IClonable<T>
     {
         T Clone();
     }
