@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Utilities.Pooling;
 
-namespace Game.CoreLogic
+namespace Utilities.Pooling
 {
     public abstract class PoolableObject<T> : IDisposable where T : PoolableObject<T>, new()
     {

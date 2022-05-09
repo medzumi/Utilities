@@ -1,6 +1,6 @@
 using System;
 
-namespace Components
+namespace Utilities
 {
     public interface IDisposeHandler
     {

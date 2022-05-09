@@ -1,8 +1,7 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
-namespace Components
+namespace Utilities
 {
     public class DisposeHandler : IDisposeHandler
     {

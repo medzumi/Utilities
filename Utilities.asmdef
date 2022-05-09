@@ -1,6 +1,6 @@
 {
     "name": "Utilities",
-    "rootNamespace": "",
+    "rootNamespace": "Utilities",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
