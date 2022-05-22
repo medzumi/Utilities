@@ -38,13 +38,13 @@ namespace Utilities.Pooling
         {
             if (!_isDisposed)
             {
+                _isDisposed = true;
                 foreach (var disposable in _disposables)
                 {
                     disposable?.Dispose();
                 }    
                 _disposables.Clear();
                 DisposeHandler();
-                _isDisposed = true;
                 _pool.Release(this as T);
             }
         }
