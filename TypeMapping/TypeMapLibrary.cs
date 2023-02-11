@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace Utilities.TypeMapping
+namespace medzumi.Utilities.TypeMapping
 {
     [Obsolete("Doesn't tested")]
     public partial class TypeMapLibrary<TAttribute>

@@ -1,72 +1,72 @@
 ﻿using System;
 
-namespace Utilities.GenericPatterns.Datas
+namespace medzumi.Utilities.GenericPatterns.Datas
 {
     [Serializable]
     public class Tuple<T1, T2>
     {
-        public T1 FirstElement;
-        public T2 SecondElement;
+        public T1 Item1;
+        public T2 Item2;
     }
 
     [Serializable]
     public class Tuple<T1, T2, T3>
     {
-        public T1 FirstElement;
-        public T2 SecondElement;
-        public T3 ThirdElement;
+        public T1 Item1;
+        public T2 Item2;
+        public T3 Item3;
     }
 
     [Serializable]
     public class Tuple<T1, T2, T3, T4>
     {
-        public T1 FirstElement;
-        public T2 SecondElement;
-        public T3 ThirdElement;
-        public T4 FourthElement;
+        public T1 Item1;
+        public T2 Item2;
+        public T3 Item3;
+        public T4 Item4;
     }
     
     [Serializable]
     public class Tuple<T1, T2, T3, T4, T5>
     {
-        public T1 FirstElement;
-        public T2 SecondElement;
-        public T3 ThirdElement;
-        public T4 FourthElement;
-        public T5 FivethElement;
+        public T1 Item1;
+        public T2 Item2;
+        public T3 Item3;
+        public T4 Item4;
+        public T5 Item5;
     }
 
     [Serializable]
     public struct ValueTuple<T1, T2>
     {
-        public T1 FirstElement;
-        public T2 SecondElement;
+        public T1 Item1;
+        public T2 Item2;
     }
 
     [Serializable]
     public struct ValueTuple<T1, T2, T3>
     {
-        public T1 FirstElement;
-        public T2 SecondElement;
-        public T3 ThirdElement;
+        public T1 Item1;
+        public T2 Item2;
+        public T3 Item3;
     }
     
     [Serializable]
     public struct ValueTuple<T1, T2, T3, T4>
     {
-        public T1 FirstElement;
-        public T2 SecondElement;
-        public T3 ThirdElement;
-        public T4 FourthElement;
+        public T1 Item1;
+        public T2 Item2;
+        public T3 Item3;
+        public T4 Item4;
     }
     
     [Serializable]
     public struct ValueTuple<T1, T2, T3, T4, T5>
     {
-        public T1 FirstElement;
-        public T2 SecondElement;
-        public T3 ThirdElement;
-        public T4 FourthElement;
-        public T5 FivethElement;
+        public T1 Item1;
+        public T2 Item2;
+        public T3 Item3;
+        public T4 Item4;
+        public T5 Item5;
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Utilities
+﻿namespace medzumi.Utilities
 {
     public interface IClonable<out T> where T : IClonable<T>
     {

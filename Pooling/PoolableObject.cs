@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Utilities.Pooling
+namespace medzumi.Utilities.Pooling
 {
     public abstract class PoolableObject<T> : IDisposable where T : PoolableObject<T>, new()
     {

@@ -2,13 +2,23 @@
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace Utilities.CodeExtensions
+namespace medzumi.Utilities.CodeExtensions
 {
     public static class CodeBeautifyExtensions
     {
         public static bool IsNull<T>(this T obj)
         {
             return obj == null;
+        }
+
+        public static bool IsNullOrEmpty(this string str)
+        {
+            return string.IsNullOrEmpty(str);
+        }
+
+        public static bool IsNullOrWhiteSpace(this string str)
+        {
+            return string.IsNullOrWhiteSpace(str);
         }
 
         public static bool IsNotNull<T>(this T obj)

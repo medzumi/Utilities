@@ -1,14 +1,6 @@
-{
-  "name": "com.medzumi.utilities",
-  "author": "Medzumi",
-  "displayName": "Utilities",
-  "unity": "2020.3",
+﻿{
+  "name": "medzumi.utilities",
   "version": "1.0.0",
   "dependencies": {
-    
-  },
-  "repository": {
-  "type": "git",
-  "url": "https://github.com/medzumi/Utilities.git"
   }
 }

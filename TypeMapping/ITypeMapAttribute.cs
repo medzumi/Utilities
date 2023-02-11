@@ -1,4 +1,4 @@
-﻿namespace Utilities.TypeMapping
+﻿namespace medzumi.Utilities.TypeMapping
 {
     public interface ITypeMapAttribute
     {

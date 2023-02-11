@@ -1,11 +1,9 @@
 using System;
 
-namespace Utilities
+namespace medzumi.Utilities
 {
     public interface IDisposeHandler
     {
-        void Reset();
-        
-        void Subscribe(IDisposable disposable);
+        void OnStop(IDisposable disposable);
     }
 }

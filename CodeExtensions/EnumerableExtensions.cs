@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Utilities.CodeExtensions
+namespace medzumi.Utilities.CodeExtensions
 {
     public static class EnumerableExtensions
     {

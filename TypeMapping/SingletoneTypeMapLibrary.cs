@@ -1,7 +1,7 @@
 ﻿using System;
-using Utilities.GenericPatterns;
+using medzumi.Utilities.GenericPatterns;
 
-namespace Utilities.TypeMapping
+namespace medzumi.Utilities.TypeMapping
 {
     public partial class TypeMapLibrary<TAttribute>
     {

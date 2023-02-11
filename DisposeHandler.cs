@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Utilities
+namespace medzumi.Utilities
 {
     public class DisposeHandler : IDisposeHandler
     {
@@ -26,7 +26,7 @@ namespace Utilities
             _disposables.Clear();
         }
 
-        public void Subscribe(IDisposable disposable)
+        public void OnStop(IDisposable disposable)
         {
             _disposables.Add(disposable);
         }

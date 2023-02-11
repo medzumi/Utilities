@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Utilities.GenericPatterns
+namespace medzumi.Utilities.GenericPatterns
 {
     public class Singletone<T>
     {

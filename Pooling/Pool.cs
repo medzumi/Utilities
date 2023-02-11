@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Utilities.Pooling
+namespace medzumi.Utilities.Pooling
 {
-    public class Pool<T> : IPool<T>
+    public class Pool<T> : IPool<T> where T : class
     {
+        private readonly object _synchronizer = new object();
         private readonly Stack<T> _pool;
         private readonly Func<T> _createFunc;
+        private int _leak;
         private Action<T> _resolveAction;
         private Action<T> _releaseAction;
 
@@ -33,17 +35,38 @@ namespace Utilities.Pooling
             _resolveAction = resolveAction;
         }
 
+        public int GetLeak()
+        {
+            return _leak;
+        }
+
+        public int GetCount()
+        {
+            lock (_synchronizer)
+            {
+                return _pool.Count;
+            }
+        }
+
         public T Get()
         {
-            var result = _pool.Count > 0 ? _pool.Pop() : _createFunc.Invoke();
-            _resolveAction?.Invoke(result);
-            return result;
+            lock (_synchronizer)
+            {
+                _leak++;
+                var result = _pool.Count > 0 ? _pool.Pop() : _createFunc.Invoke();
+                _resolveAction?.Invoke(result);
+                return result;
+            }
         }
 
         public void Release(T tObject)
         {
-            _releaseAction?.Invoke(tObject);
-            _pool.Push(tObject);
+            lock (_synchronizer)
+            {
+                _releaseAction?.Invoke(tObject);
+                _pool.Push(tObject);
+                _leak--;
+            }
         }
     }
 }
