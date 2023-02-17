@@ -11,7 +11,7 @@ namespace medzumi.Utilities.Pooling
         
         static PoolableObject()
         {
-            _pool = new Pool<T>(0, () => new T());
+            _pool = new Pool<T>(0, (_) => new T());
         }
 
         protected PoolableObject()

@@ -8,7 +8,7 @@ namespace medzumi.Utilities.Pooling
 {
     public interface IPoolConfiguration<out TOut, in TIn>
     {
-        public TOut Create(TIn tObject);
+        public TOut Create(TIn tObject, IPoolReleaser<TOut> releaser);
         public void ResolveAction(TIn tObject);
         public void ReleaseAction(TIn tObject);
     }
@@ -18,9 +18,19 @@ namespace medzumi.Utilities.Pooling
         private readonly Dictionary<object, Dictionary<Type, object>> _pools = new Dictionary<object, Dictionary<Type, object>>();
         private readonly Dictionary<Type, object> _factories = new Dictionary<Type, object>();
 
+        private readonly Dictionary<Type, object> _commonPools = new Dictionary<Type, object>();
+
         public void SetPoolConfiguration<T>(IPoolConfiguration<T, T> poolConfiguration)
         {
             _factories[typeof(T)] = poolConfiguration;
+        }
+
+        public IPool<T> GetPoolForNew<T>() where T : class, new()
+        {
+            if(!_commonPools.TryGetValue(typeof(T), out var value)){
+                _commonPools[typeof(T)] = value = new Pool<T>(0, x => new T(), null, null);
+            }
+            return value as IPool<T>;
         }
 
         public IPool<T> GetPollForObject<T>(T tObject) where T : class
@@ -44,8 +54,8 @@ namespace medzumi.Utilities.Pooling
                 }
                 else
                 {
-                    var typeFactory = factory as IPoolConfiguration<object, T>;
-                    oPools[typeof(T)] = oPool = new Pool<T>(0, () => typeFactory.Create(tObject) as T, typeFactory.ResolveAction, typeFactory.ReleaseAction);
+                    var typeFactory = factory as IPoolConfiguration<T, T>;
+                    oPools[typeof(T)] = oPool = new Pool<T>(0, (x) => typeFactory.Create(tObject, x) as T, typeFactory.ResolveAction, typeFactory.ReleaseAction);
                     return oPool as IPool<T>;
                 }
             }
@@ -76,6 +86,10 @@ namespace medzumi.Utilities.Pooling
         public static IPool<T> GetPool<T>(this T tObj) where T : class
         {
             return PoolFactory.instance.GetPollForObject(tObj);
+        }
+
+        public static IPool<T> GetPool<T>() where T : class, new(){
+            return PoolFactory.instance.GetPoolForNew<T>();
         }
     }
 }

@@ -7,28 +7,28 @@ namespace medzumi.Utilities.Pooling
     {
         private readonly object _synchronizer = new object();
         private readonly Stack<T> _pool;
-        private readonly Func<T> _createFunc;
+        private readonly Func<IPool<T>, T> _createFunc;
         private int _leak;
         private Action<T> _resolveAction;
         private Action<T> _releaseAction;
 
-        public Pool(int capacity, Func<T> createFunc)
+        public Pool(int capacity, Func<IPool<T>, T> createFunc)
         {
             _pool = new Stack<T>(capacity);
             _createFunc = createFunc;
             for (int i = 0; i < capacity; i++)
             {
-                _pool.Push(createFunc.Invoke());
+                _pool.Push(createFunc.Invoke(this));
             }
         }
         
-        public Pool(int capacity, Func<T> createFunc, Action<T> resolveAction, Action<T> releaseAction)
+        public Pool(int capacity, Func< IPool<T>, T> createFunc, Action<T> resolveAction, Action<T> releaseAction)
         {
             _pool = new Stack<T>(capacity);
             _createFunc = createFunc;
             for (int i = 0; i < capacity; i++)
             {
-                _pool.Push(createFunc.Invoke());
+                _pool.Push(createFunc.Invoke(this));
             }
 
             _releaseAction = releaseAction;
@@ -53,7 +53,7 @@ namespace medzumi.Utilities.Pooling
             lock (_synchronizer)
             {
                 _leak++;
-                var result = _pool.Count > 0 ? _pool.Pop() : _createFunc.Invoke();
+                var result = _pool.Count > 0 ? _pool.Pop() : _createFunc.Invoke(this);
                 _resolveAction?.Invoke(result);
                 return result;
             }
