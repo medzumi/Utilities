@@ -16,9 +16,7 @@ namespace medzumi.Utilities.GenericPatterns
                 }
                 catch (Exception e)
                 {
-                    #if UNITY
                     UnityEngine.Debug.LogException(e);
-                    #endif
                     return default;
                 }
                 
