@@ -13,7 +13,7 @@ namespace medzumi.Utilities.Pooling
         public void ReleaseAction(TIn tObject);
     }
 
-    public class PoolFactory : Singletone<PoolFactory>
+    public class PoolFactory
     {
         private readonly Dictionary<object, Dictionary<Type, object>> _pools = new Dictionary<object, Dictionary<Type, object>>();
         private readonly Dictionary<Type, object> _factories = new Dictionary<Type, object>();
@@ -83,13 +83,15 @@ namespace medzumi.Utilities.Pooling
     
     public static class PoolExtensions
     {
+        public static readonly PoolFactory PoolFactory = new PoolFactory();
+
         public static IPool<T> GetPool<T>(this T tObj) where T : class
         {
-            return PoolFactory.instance.GetPollForObject(tObj);
+            return PoolFactory.GetPollForObject(tObj);
         }
 
         public static IPool<T> GetPool<T>() where T : class, new(){
-            return PoolFactory.instance.GetPoolForNew<T>();
+            return PoolFactory.GetPoolForNew<T>();
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace medzumi.Utilities.GenericPatterns
 {
-    public class Singletone<T>
+    public class Singletone<T> where T : new()
     {
         private static T _instance;
         
