@@ -26,7 +26,7 @@ namespace medzumi.Utilities
             _disposables.Clear();
         }
 
-        public void OnStop(IDisposable disposable)
+        public void OnDispose(IDisposable disposable)
         {
             _disposables.Add(disposable);
         }

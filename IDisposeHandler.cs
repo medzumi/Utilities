@@ -4,6 +4,6 @@ namespace medzumi.Utilities
 {
     public interface IDisposeHandler
     {
-        void OnStop(IDisposable disposable);
+        void OnDispose(IDisposable disposable);
     }
 }

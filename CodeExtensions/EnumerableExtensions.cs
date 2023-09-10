@@ -41,6 +41,16 @@ namespace medzumi.Utilities.CodeExtensions
             return list;
         }
 
+        public static TValue GetOrCreate<TKey, TValue>(this Dictionary<TKey, TValue> dictionary, TKey key) where TValue : new()
+        {
+            if (!dictionary.TryGetValue(key, out var value))
+            {
+                dictionary[key] = value = new TValue();
+            }
+
+            return value;
+        }
+
         private static T GetOrCreate<T>() where T : class, new()
         {
             lock (_listDict)
